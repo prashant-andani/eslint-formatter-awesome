@@ -1,0 +1,50 @@
+{
+  "name": "eslint-formatter-awesome",
+  "description": "A simple eslint stat and summary tool",
+  "version": "0.0.2",
+  "author": "Prashant Andani",
+  "bin": {
+    "eslint-stats": "./bin/run"
+  },
+  "bugs": "https://github.com/prashant-andani/eslint-formatter-awesome/issues",
+  "dependencies": {
+    "@oclif/command": "^1",
+    "@oclif/config": "^1",
+    "@oclif/plugin-help": "^2",
+    "chalk": "^2.4.2",
+    "eslint-plugin-node": "^8.0.1",
+    "node-emoji": "^1.10.0"
+  },
+  "devDependencies": {
+    "@oclif/test": "^1",
+    "chai": "^4",
+    "eslint": "^5.13",
+    "eslint-config-oclif": "^3.1",
+    "mocha": "^5",
+    "nyc": "^13"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "files": [
+    "/bin",
+    "/src"
+  ],
+  "homepage": "https://github.com/https://github.com/prashant-andani/eslint-stats/https://github.com/prashant-andani/eslint-stats",
+  "keywords": [
+    "eslint",
+    "eslint-formatter",
+    "eslintformatter"
+  ],
+  "license": "MIT",
+  "main": "src/index.js",
+  "oclif": {
+    "bin": "eslint-formatter-awesome"
+  },
+  "repository": "https://github.com/prashant-andani/eslint-stats/https://github.com/prashant-andani/eslint-stats",
+  "scripts": {
+    "eslint-stats": "./bin/run",
+    "posttest": "eslint .",
+    "test": "nyc mocha --forbid-only \"test/**/*.test.js\""
+  }
+}
