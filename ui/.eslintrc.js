@@ -1,9 +1,9 @@
 module.exports = {
   env: {
-    node: true
+    browser: true
   },
   parser: 'babel-eslint',
-  extends: ['eslint:recommended'],
+  extends: ['eslint:recommended', 'airbnb', 'plugin:prettier/recommended'],
   rules: {
     'node/prefer-global/console': ['warning', 'always']
   }

@@ -1,0 +1,14 @@
+.home {
+	padding: 56px 20px;
+	min-height: 100%;
+	width: 100%;
+	display: block;
+}
+.tag {
+	background: #efdbff;
+	font-size: 14px;
+	padding: 6px 10px;
+	display: inline;
+	margin: 5px;
+	cursor: pointer;
+}

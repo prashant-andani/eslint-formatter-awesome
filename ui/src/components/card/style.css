@@ -1,0 +1,38 @@
+.card {
+	background: #fff;
+	border-radius: 2px;
+	display: inline-grid;
+  min-height: 100px;
+	margin: 1rem;
+	position: relative;
+	width: 30rem;
+	padding: 20px 20px;
+
+}
+.title {
+  font-weight: 500;
+}
+.rule-id {
+  color: #8c8c8c;
+  font-size: 14px;
+}
+.file-path {
+  color: #595959;
+  font-weight: 500;
+  font-size: 12px;
+}
+.error-type {
+  float: right;
+}
+.error-card {
+  border-left: 3px solid red;
+}
+.warning-card {
+  border-left: 3px solid yellow;
+}
+
+
+.card:hover {
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+	cursor: pointer;
+}

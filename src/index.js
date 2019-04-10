@@ -1,9 +1,12 @@
 const { Command, flags } = require('@oclif/command');
-const { spawn } = require('child_process');
+//const { spawn } = require('child_process');
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
+
 const chalk = require('chalk');
 const emoji = require('node-emoji');
 const log = console.log;
-
+const fs = require('fs');
 // Combine styled and normal strings
 class EslintStatsCommand extends Command {
   groupByRules(data) {
@@ -90,51 +93,28 @@ class EslintStatsCommand extends Command {
     });
   }
 
-  fetchError() {
-    const ls = spawn('eslint', ['.', '-f', 'json']);
-    ls.stdout.on('data', data => {
-      let result = this.getTotalCount(data);
-      const total =
-        result.errors +
-        result.warnings +
-        result.autoFixableErrors +
-        result.autoFixableWarnings;
-      log(
-        chalk.bgBlue.bold(
-          `********** ${emoji.get('punch')}  ESLint Stats **********`
-        )
-      );
-      log('\n');
-      //this.displayByType(data);
-      this.displayByRules(data);
-
-      log('');
-      log(
-        `${emoji.get('fire')} `,
-        `${total} problems found`,
-        `(${chalk.red.bold('Errors:')} ${result.errors}, ${chalk.yellow.bold(
-          'Warnings:'
-        )}, ${result.warnings})`,
-        `(${chalk.green.bold('Autofixable Errors:')} ${
-          result.autoFixableErrors
-        },`,
-        `${chalk.green.bold('Autofixable Warnings:')} ${
-          result.autoFixableWarnings
-        })`
-      );
+  writeToFile(data) {
+    fs.truncate('content.json', () => {
+      console.log('Content truncated...');
     });
 
-    ls.stderr.on('data', data => {
-      //log(`${data}`);
-    });
+    fs.writeFile('content.json', data, 'utf8', () =>
+      console.log('file created')
+    );
+  }
 
-    ls.on('close', code => {
-      // console.log(`child process exited with code ${code}`);
-    });
+  async fetchError() {
+    console.log('fetching ...');
+
+    try {
+      const { stdout, stderr } = await exec('eslint . -f json');
+    } catch (e) {
+      this.writeToFile(e.stdout);
+    }
   }
   async run() {
     const { flags } = this.parse(EslintStatsCommand);
-    console.log(flags);
+    console.log('Running eslint ...');
     this.fetchError();
   }
 }
@@ -145,11 +125,11 @@ Extra documentation goes here
 `;
 
 EslintStatsCommand.flags = {
-  // add --version flag to show CLI version
-  version: flags.version({ char: 'v' }),
-  // add --help flag to show CLI version
-  help: flags.help({ char: 'h' }),
-  rule: flags.string({ char: 'r', description: 'Group by Rules' })
+  //   // add --version flag to show CLI version
+  //   version: flags.version({ char: 'v' }),
+  //   // add --help flag to show CLI version
+  //   help: flags.help({ char: 'h' }),
+  //   rule: flags.string({ char: 'r', description: 'Group by Rules' })
 };
 
 module.exports = EslintStatsCommand;
