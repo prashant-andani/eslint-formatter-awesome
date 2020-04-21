@@ -40,7 +40,7 @@
     "/bin",
     "/src"
   ],
-  "homepage": "https://github.com/prashant-andani/eslint-stats",
+  "homepage": "https://github.com/prashant-andani/eslint-formatter-awesome/",
   "keywords": [
     "eslint",
     "eslint-formatter",
@@ -51,7 +51,7 @@
   "oclif": {
     "bin": "eslint-formatter-awesome"
   },
-  "repository": "https://github.com/prashant-andani/eslint-stats/https://github.com/prashant-andani/eslint-stats",
+  "repository": "https://github.com/prashant-andani/eslint-formatter-awesome",
   "scripts": {
     "eslint-stats": "./bin/run",
     "lint": "eslint . -f json",
